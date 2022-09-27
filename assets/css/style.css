@@ -1,0 +1,275 @@
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;;
+}
+
+body {
+	margin: 0;
+	background: black;
+}
+
+/**
+* HEADER
+шапка сайта в которой логотип, навигационная панель и кнопка связи
+*/
+.header {
+	display: grid;
+	grid-template-columns: 150px 1fr 150px;
+	grid-template-rows: 50px;
+	background: white;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
+
+.logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo  h1 {
+	margin: 5px;
+	color: #333333;
+	cursor: pointer;
+}
+
+.navigation  {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.navigation li {
+	cursor: pointer;
+	display: inline-block;
+	margin: 5px 10px;
+}
+
+.contact-link {
+	cursor: pointer;
+}
+
+.contact-btn {
+	display: block;
+	cursor: pointer;
+}
+/**
+*Медиазапрос для навигации и по клику на бургер меню
+*/
+@media screen and (max-width: 600px) {
+	.header {
+		grid-template-columns: 100px 1fr 150px;
+	}
+
+	.menu {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		order: -1;
+		width: 100%;
+	}
+
+	.navigation {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		opacity: 0;
+		position: absolute;
+		top: 50px;
+		left: 0;
+		width: 100%;
+		height: 180px;
+		z-index:999;
+		background: #ffffff;
+		padding: 10px;		
+	}
+
+	.navigation li {
+		display: block;
+		margin: 15px;
+		text-align: center;
+		color: #333333;
+		font-size: 18px;
+	}
+	
+	.burger-menu {
+		position: relative;
+		display: inline-block;
+		background-color: rgba(255, 255, 255, .5);
+		padding: 10px 5px;
+		cursor: pointer;
+		width: 40px;
+		height: 30px;
+	}
+
+	.burger-line {
+		display: block;
+		width: 100%;
+		height: 4px;
+		background-color: #494949;
+		position: absolute;
+		left: 0;
+		transition: .3s all linear;
+	}
+
+	.burger-line-first {
+		top: 0;
+	}
+
+	.burger-line-second, .burger-line-third {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.burger-line-fourth {
+		bottom: 0;
+	}
+
+	.burgerActive {
+		opacity: 1;
+	}
+	.burgerActive .burger-line-first, .burgerActive .burger-line-fourth {
+		opacity: 0;
+	} 
+
+	.burgerActive .burger-line-second {
+		transform: translateY(-50%) rotate(45deg);
+		background: #e65c4f;
+	} 
+
+	.burgerActive .burger-line-third {
+		transform: translateY(-50%) rotate(-45deg);
+		background: #e65c4f;
+	} 
+
+	.logo  h1 {
+		margin: 5px;
+		text-align: center;
+	}
+}
+
+/* Phone 
+* кнопка связи в шапке сайта
+*/
+.contact-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.contact-link {
+	display: block;
+	background: #e65c4f;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 5px 3px;
+	text-decoration: none;
+	animation: glowing 2s infinite;
+}
+
+@keyframes glowing {
+	0% {
+		box-shadow: 0 0 0 #e65c4f;
+	}
+	
+	50% {
+		box-shadow: 0 0 10px #e65c4f;
+	}
+	
+	100% {
+		box-shadow: 0 0 0 #e65c4f;
+	}
+}
+
+.contact-btn {
+	background: #e65c4f;
+	border: none;
+	color: #ffffff;
+	font-size: 16px;
+}
+/**
+* MAIN
+* Тело сайта в котором есть также своя шапка тело в котором статья и вней секции после футер
+*/
+/* main-header */
+.main {
+	background-color: #ffffff;
+}
+
+.main-header {
+	position: relative;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*background-image: url('img_parallax.jpg');*/
+	min-height: calc(100vh - 50px);
+	background: grey;
+	padding: 5px;
+}
+
+/* main-container */
+.main-article {
+	position: relative;
+	min-height: calc(100vh - 100px);
+}
+
+.title-article {	
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 5s easy 0s;
+}
+
+.title-article._active {
+	transform: translate(0px, 0px);
+	animation: animescroll 1s linear 1 alternate .5s forwards;
+}
+
+@keyframes animescroll {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: .5;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.container {
+	max-width: 1000px;
+	background: #ffffff;
+	margin: 0 auto;
+	border: 1px solid red;
+	padding: 10px;
+}
+
+.section {
+	min-height: calc(70vh);
+	background-color: blue;
+	border: 1px solid white;
+}
+/**
+* FOOTER
+* подвал сайта
+*/
+.footer {	
+	background-color: green;
+}
+
+.footer-content {
+	min-height: calc(70vh);
+	background-color: green;	
+	border: 1px solid black;
+}
+
+
